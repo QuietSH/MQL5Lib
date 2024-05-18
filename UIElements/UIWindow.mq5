@@ -11,32 +11,39 @@
 class UIWindow{
    private:
       string name;
+      int x,y,width,height;
       ENUM_BORDER_TYPE btype;
       bool hide;
       
-      void Create(string Name, int X, int Y, int width, int height){
+      void Create(){
          if(!ObjectCreate(0,name,OBJ_RECTANGLE_LABEL,0,0,0))
             return;
             
          SetBorderType();
          ObjectSetInteger(0,name,OBJPROP_CORNER,CORNER_RIGHT_UPPER);
-         ObjectSetInteger(0,name,OBJPROP_XDISTANCE,X);
-         ObjectSetInteger(0,name,OBJPROP_YDISTANCE,Y);
+         ObjectSetInteger(0,name,OBJPROP_XDISTANCE,x);
+         ObjectSetInteger(0,name,OBJPROP_YDISTANCE,y);
          ObjectSetInteger(0,name,OBJPROP_XSIZE,width);
          ObjectSetInteger(0,name,OBJPROP_YSIZE,height);
+         ObjectSetInteger(0,name,OBJPROP_ZORDER,0);
       }
    public:
       
-      void Init(string Name, int X, int Y, int width, int height){
-         name = Name;
-         Create(Name,X,Y,width,height);
+      void UIWindow(string Name, int X, int Y, int Width, int Height){
+         name = Name; x = X; y = Y; width = Width; height = Height;
+         Create();
          Hide();
       }
       
-      void Init(string Name, int X, int Y, int width, int height, bool hidden){
-         name = Name;
-         Create(Name,X,Y,width,height);
-         Hide(hidden);
+      void UIWindow(string Name, int X, int Y, int Width, int Height, bool hidden){
+         name = Name; x = X; y = Y; width = Width; height = Height;hide = hidden;
+         Create();
+         Hide(hide);
+      }
+      
+      void Init(){
+         Create();
+         Hide(hide);
       }
       
       void SetBorderType(ENUM_BORDER_TYPE BType = BORDER_FLAT){
@@ -47,5 +54,9 @@ class UIWindow{
       void Hide(bool toggle = true){
          hide = toggle;
          ObjectSetInteger(0,name,OBJPROP_HIDDEN,hide);
+      }
+      
+      void DeInit(){
+         ObjectDelete(0,name);
       }
 };
