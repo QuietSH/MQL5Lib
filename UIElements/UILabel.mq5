@@ -11,7 +11,7 @@
 class UILabel{
    private:
       string name;
-      int x, y, width, height;
+      int x, y, width, height, fntsize;
       
       void Create(){
          if(!ObjectCreate(0,name,OBJ_LABEL,0,0,0))
@@ -19,11 +19,18 @@ class UILabel{
          ObjectSetInteger(0,name,OBJPROP_CORNER,CORNER_RIGHT_UPPER);
          ObjectSetInteger(0,name,OBJPROP_XDISTANCE,x);
          ObjectSetInteger(0,name,OBJPROP_YDISTANCE,y);
+         ObjectSetInteger(0,name,OBJPROP_FONTSIZE,fntsize);
          ObjectSetInteger(0,name,OBJPROP_ZORDER,1);
       }
    public:
-      UILabel(string Name, int X, int Y){
-         name = Name; x = X; y = Y;
+      UILabel(){}
+      UILabel(string Name, int X, int Y, int FntSize = 10){
+         name = Name; x = X; y = Y; fntsize = FntSize;
+         Create();
+      }
+      
+      void Init(string Name, int X, int Y, int FntSize = 10){
+         name = Name; x = X; y = Y; fntsize = FntSize;
          Create();
       }
       
@@ -43,6 +50,11 @@ class UILabel{
       
       void SetTextColor(color Color){
          ObjectSetInteger(0,name,OBJPROP_COLOR,Color);
+      }
+      
+      void SetFontSize(int size){
+         fntsize = size;
+         ObjectSetInteger(0,name,OBJPROP_FONTSIZE,fntsize);
       }
       
       void DeInit(){

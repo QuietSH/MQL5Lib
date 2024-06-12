@@ -15,6 +15,6 @@ class SellButton : public BaseButton{
    
    public:
       void OnClick() override{
-         Print("Sell");
+         
       }
 };

@@ -16,5 +16,6 @@ class BuyButton : public BaseButton{
    public:
       void OnClick() override{
          Print("Buy");
+         //trade.MarketBuy();
       }
 };

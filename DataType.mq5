@@ -9,12 +9,17 @@
 #property version   "1.00"
 
 enum eDirection{
-   Lateral,
    Long,
-   Short
+   Short,
+   Flat
 };
 
 enum eMode{
    WaitBreak,
    Trade
+};
+
+enum eToggle{
+   on,
+   off
 };

@@ -12,6 +12,7 @@ class BaseButton{
    private:
       string name, label;
       int x,y,width, height;
+      bool activate;
       
       void Create(){
          if(!ObjectCreate(0,name,OBJ_BUTTON,0,0,0))
@@ -35,5 +36,28 @@ class BaseButton{
       
       void DeInit(){
          ObjectDelete(0,name);
+      }
+      
+      bool Activate(){
+         if(!activate)
+            Toggle(off);
+         return activate;
+      }
+      
+      void Activate(eToggle t){
+         if(t == on){
+            activate = true;
+            ObjectSetInteger(NULL,name,OBJPROP_BGCOLOR,clrLimeGreen);
+         }else{
+            activate = false;
+            ObjectSetInteger(NULL,name,OBJPROP_BGCOLOR,clrRed);
+         }
+      }
+      
+      void Toggle(eToggle t){
+         if(t == on)
+            ObjectSetInteger(NULL,name,OBJPROP_STATE,1);
+         else
+            ObjectSetInteger(NULL,name,OBJPROP_STATE,0);
       }
 };

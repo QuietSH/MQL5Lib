@@ -28,8 +28,8 @@ class UIWindow{
          ObjectSetInteger(0,name,OBJPROP_ZORDER,0);
       }
    public:
-      
-      void UIWindow(string Name, int X, int Y, int Width, int Height){
+      UIWindow(){}
+      UIWindow(string Name, int X, int Y, int Width, int Height){
          name = Name; x = X; y = Y; width = Width; height = Height;
          Create();
          Hide();
@@ -44,6 +44,12 @@ class UIWindow{
       void Init(){
          Create();
          Hide(hide);
+      }
+      
+      void Init(string Name, int X, int Y, int Width, int Height){
+         name = Name; x = X; y = Y; width = Width; height = Height;
+         Create();
+         Hide();
       }
       
       void SetBorderType(ENUM_BORDER_TYPE BType = BORDER_FLAT){
